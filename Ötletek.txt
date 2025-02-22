@@ -1,0 +1,12 @@
+Ötletek a weboldalhoz
+
+Botolás elleni védelem - Pl: email ellenőrtéssel
+Értesítés az új rendezvényekről a weboldalon egy felogró jelzésben (Pl: "4 új rendezvény kérvény érkezett be)
+Egy olvasott/latott jelző a rendezvényekről.
+Admin és Fő Admin szereppek
+Rendezvény editelésének lehetősége Admin számára (és annak jelzése ha már szerkeztve van)
+Responziv nézet megoldása akár be csukható meg nyitható menükkel
+Dark mode kapcsoló
+Statisztikák, hogy eddig hány rendezvény jött be, mennyi készült el (pl kördiagrammal)
+
+
