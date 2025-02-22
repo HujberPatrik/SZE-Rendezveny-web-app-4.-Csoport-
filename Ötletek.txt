@@ -7,6 +7,6 @@ Admin és Fő Admin szereppek
 Rendezvény editelésének lehetősége Admin számára (és annak jelzése ha már szerkeztve van)
 Responziv nézet megoldása akár be csukható meg nyitható menükkel
 Dark mode kapcsoló
-Statisztikák, hogy eddig hány rendezvény jött be, mennyi készült el (pl kördiagrammal)
+Statisztikák, hogy eddig hány rendezvény jött be, mennyi készült el (pl kördiagrammal).
 
 
