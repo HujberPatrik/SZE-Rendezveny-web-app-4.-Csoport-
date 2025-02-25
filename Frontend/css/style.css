@@ -370,3 +370,9 @@ body.dark-mode nav {
     color: #000000; 
 }
 
+.responsive-logo {
+    max-width: 0%;
+    height: auto;
+}
+
+
