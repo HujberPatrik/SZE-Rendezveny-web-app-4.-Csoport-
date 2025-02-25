@@ -1,18 +1,15 @@
-/********** Template CSS **********/
 :root {
     --primary: #50adc9; /* Főszín 1 */
-    --light: #ffffff;   /*  */
+    --light: #ffffff;
     --dark: #242943;
+    --font-family: 'Montserrat', sans-serif; /* Betűtípus */
+
 }
 
-.back-to-top {
-    position: fixed;
-    display: none;
-    right: 45px;
-    bottom: 45px;
-    z-index: 99;
+/* Az egész oldalra alkalmazza a betűtípust */
+* {
+    font-family: var(--font-family);
 }
-
 
 /*** Spinner ***/
 #spinner {
@@ -27,7 +24,6 @@
     visibility: visible;
     opacity: 1;
 }
-
 
 /*** Button ***/
 .btn {
@@ -64,7 +60,6 @@
     border-radius: 50px;
 }
 
-
 /*** Layout ***/
 .sidebar {
     position: fixed;
@@ -82,9 +77,14 @@
 .content {
     margin-left: 250px;
     min-height: 100vh;
-    background: #FFFFFF; 
+    background: #FFFFFF;
     transition: 0.5s;
 }
+
+body.dark-mode .content {
+    background: #2e2e2e; /* sötét mód */
+}
+
 
 @media (min-width: 992px) {
     .sidebar {
@@ -120,7 +120,6 @@
     }
 }
 
-
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
     padding: 7px 20px;
@@ -152,6 +151,14 @@
 .sidebar .navbar .navbar-nav .nav-link.active i {
     background: var(--dark);
 }
+
+/* Dark mode */
+body.dark-mode .content .navbar .navbar-nav .nav-link {
+    color: var(--light); /* sötét mód */
+}
+
+
+
 
 .sidebar .navbar .dropdown-toggle::after {
     position: absolute;
@@ -280,19 +287,86 @@
 
 /* Az összes link szövege fehér */
 .sidebar .navbar .navbar-nav .nav-link {
-    color: #ffffff; /* Szöveg színe */
+    color: #ffffff; 
 }
 
 /* Aktív link színének és hátterének beállítása */
 .sidebar .navbar .navbar-nav .nav-link.active {
-    color: #ffffff; /* A szöveg színe (fehér) */
-    background-color: rgb(80, 173, 201); /* Hátteret a kívánt színre állítjuk */
-    border-color: rgb(80, 173, 201); /* Az alatta lévő vonal színe */
+    color: #ffffff; 
+    background-color: rgb(80, 173, 201); 
+    border-color: rgb(80, 173, 201); 
 }
 
-/* Hover állapot színének és hátterének beállítása */
 .sidebar .navbar .navbar-nav .nav-link:hover {
-    color: #ffffff; /* A szöveg színe (fehér) */
-    background-color: rgb(80, 173, 201); /* Hátteret a kívánt színre állítjuk */
-    border-color: rgb(80, 173, 201); /* Hover esetén is az aktív szín */
+    color: #ffffff; 
+    background-color: rgb(80, 173, 201); 
+    border-color: rgb(80, 173, 201); 
 }
+
+
+
+
+
+
+
+/* Navbar gombok */
+#buttons_navbar {
+    background-color: #ffffff;
+    padding: 12px;
+    width: 42px;
+    height: 42px;  
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+}
+#dark-mode-toggle {
+    background-color: #ffffff;
+    padding: 12px;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+}
+.nav-item span.text-muted {
+    font-size: 0.8rem;  
+    color: #888;        
+    margin-left: 5px;   
+}
+/* / */
+
+
+
+
+
+
+/* SZÍN VÁLTÁS !!!!!!!!!!! */
+
+nav {
+    background-color: #f0f0f0; 
+}
+
+body.dark-mode nav {
+    background-color:  #242943; 
+    color: #ffffff;
+}
+
+/* Alapértelmezett világos mód */
+.accordion-item {
+    background-color: #f8f9fa; 
+}
+
+.accordion-button {
+    background-color: #f8f9fa; 
+    color: #000000; 
+}
+
+.accordion-body {
+    background-color: #ffffff; 
+    color: #000000; 
+}
+
