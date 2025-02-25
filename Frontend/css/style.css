@@ -1,8 +1,8 @@
 /********** Template CSS **********/
 :root {
-    --primary: #009CFF;
-    --light: #F3F6F9;
-    --dark: #191C24;
+    --primary: #50adc9; /* Főszín 1 */
+    --light: #ffffff;   /*  */
+    --dark: #242943;
 }
 
 .back-to-top {
@@ -74,7 +74,7 @@
     width: 250px;
     height: 100vh;
     overflow-y: auto;
-    background: var(--light);
+    background: var(--dark);
     transition: 0.5s;
     z-index: 999;
 }
@@ -82,7 +82,7 @@
 .content {
     margin-left: 250px;
     min-height: 100vh;
-    background: #FFFFFF;
+    background: #FFFFFF; 
     transition: 0.5s;
 }
 
@@ -126,7 +126,7 @@
     padding: 7px 20px;
     color: var(--dark);
     font-weight: 500;
-    border-left: 3px solid var(--light);
+    border-left: 3px solid var(--dark);
     border-radius: 0 30px 30px 0;
     outline: none;
 }
@@ -144,13 +144,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #FFFFFF;
+    background: #50adc9;
     border-radius: 40px;
 }
 
 .sidebar .navbar .navbar-nav .nav-link:hover i,
 .sidebar .navbar .navbar-nav .nav-link.active i {
-    background: var(--light);
+    background: var(--dark);
 }
 
 .sidebar .navbar .dropdown-toggle::after {
@@ -274,4 +274,25 @@
 .testimonial-carousel .owl-dot.active {
     background: var(--dark);
     border-color: var(--primary);
+}
+
+
+
+/* Az összes link szövege fehér */
+.sidebar .navbar .navbar-nav .nav-link {
+    color: #ffffff; /* Szöveg színe */
+}
+
+/* Aktív link színének és hátterének beállítása */
+.sidebar .navbar .navbar-nav .nav-link.active {
+    color: #ffffff; /* A szöveg színe (fehér) */
+    background-color: rgb(80, 173, 201); /* Hátteret a kívánt színre állítjuk */
+    border-color: rgb(80, 173, 201); /* Az alatta lévő vonal színe */
+}
+
+/* Hover állapot színének és hátterének beállítása */
+.sidebar .navbar .navbar-nav .nav-link:hover {
+    color: #ffffff; /* A szöveg színe (fehér) */
+    background-color: rgb(80, 173, 201); /* Hátteret a kívánt színre állítjuk */
+    border-color: rgb(80, 173, 201); /* Hover esetén is az aktív szín */
 }
