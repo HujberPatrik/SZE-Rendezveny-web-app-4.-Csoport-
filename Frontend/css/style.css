@@ -307,8 +307,6 @@ body.dark-mode .content .navbar .navbar-nav .nav-link {
 
 
 
-
-
 /* Navbar gombok */
 #buttons_navbar {
     background-color: #ffffff;
@@ -381,3 +379,34 @@ body.dark-mode nav {
         display: none !important;
     }
 }
+
+
+
+/* Táblázat */
+.table-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    justify-content: flex-start;
+}
+
+.table-filters input, .table-filters select {
+    width: 180px;
+}
+
+.table-scrollable {
+    height: 600px;
+    overflow-y: auto;
+}
+
+/* Táblázat szűrő oszlopok igazítása */
+.table th, .table td {
+    text-align: center;
+}
+
+

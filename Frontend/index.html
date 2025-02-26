@@ -64,14 +64,15 @@
                 <!-- Gombok görgethető konténerben -->
                 <div class="navbar-nav w-100" style="flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; position: relative;">
                     <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Főoldal</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Táblázat</a>
-                    <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Diagrammok</a>
+                    <a href="bejelentes.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Teszt Bejelentes</a>
+                    <a href="signin.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Teszt login</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Egyéb</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="signin.html" class="dropdown-item">Sign In</a>
-                            <a href="signup.html" class="dropdown-item">Sign Up</a>
-                            <a href="blank.html" class="dropdown-item">Blank Page</a>
+                            <a href="" class="dropdown-item"  style="color: #50adc9;">oldal</a>
+                            <a href="" class="dropdown-item"  style="color: #50adc9;">oldal</a>
+                            <a href="" class="dropdown-item"  style="color: #50adc9;">oldal</a>
+
                         </div>
                     </div>
                 </div>
@@ -89,7 +90,7 @@
 
 
 <!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg navbar-light sticky-top px-4 py-0 position-relative">
+<nav class="navbar navbar-expand-lg navbar-light sticky-top px-4 py-0">
     <!-- Logó (bal oldalon) -->
     <a href="index.html" class="navbar-brand d-flex me-4 d-none d-md-flex">
         <img src="img/egyetemi logo/allo_RGB/sze_logo_allo_RGB_white_bg.png" 
@@ -268,71 +269,180 @@
 
 
 <!-- Táblázat -->
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4 table-container">
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">Rendezvények</h6>
             <a href="">Összes</a>
         </div>
-        <div class="table-responsive">
-            <table class="table text-start align-middle table-bordered table-hover mb-0">
-                <thead>
-                    <tr class="text-dark">
-                        <th scope="col">Kezdő Időpont</th>
-                        <th scope="col">Záró Időpont</th>
-                        <th scope="col">Neve</th>
-                        <th scope="col">Helyszín</th>
-                        <th scope="col">Rendezvény Típusa</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2025-03-01 10:00</td>
-                        <td>2025-03-01 18:00</td>
-                        <td>Rendezvény 1</td>
-                        <td>Helyszín 1</td>
-                        <td>Konferencia</td>
-                        <td><a class="btn btn-sm btn-primary" href="event.html?id=1">Szerkesztés</a></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-02 09:00</td>
-                        <td>2025-03-02 17:00</td>
-                        <td>Rendezvény 2</td>
-                        <td>Helyszín 2</td>
-                        <td>Workshop</td>
-                        <td><a class="btn btn-sm btn-primary" href="event.html?id=2">Szerkesztés</a></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-05 14:00</td>
-                        <td>2025-03-05 20:00</td>
-                        <td>Rendezvény 3</td>
-                        <td>Helyszín 3</td>
-                        <td>Előadás</td>
-                        <td><a class="btn btn-sm btn-primary" href="event.html?id=3">Szerkesztés</a></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-10 11:00</td>
-                        <td>2025-03-10 15:00</td>
-                        <td>Rendezvény 4</td>
-                        <td>Helyszín 4</td>
-                        <td>Kiállítás</td>
-                        <td><a class="btn btn-sm btn-primary" href="event.html?id=4">Szerkesztés</a></td>
-                    </tr>
-                    <tr>
-                        <td>2025-03-15 12:00</td>
-                        <td>2025-03-15 16:00</td>
-                        <td>Rendezvény 5</td>
-                        <td>Helyszín 5</td>
-                        <td>Szimpózium</td>
-                        <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
-                    </tr>
-                </tbody>
-            </table>
+        
+        <!-- Szűrők és Táblázat -->
+        <div class="table-wrapper">
+            <!-- Szűrők -->
+            <div class="table-filters mb-3">
+                <input type="text" id="filter-name" class="form-control form-control-sm" placeholder="Neve keresése">
+                
+                <input type="date" id="filter-start-time" class="form-control form-control-sm">
+                <input type="date" id="filter-end-time" class="form-control form-control-sm">
+                
+                <select id="filter-location" class="form-control form-control-sm">
+                    <option value="">Helyszín szűrése</option>
+                    <option value="Helyszín 1">Helyszín 1</option>
+                    <option value="Helyszín 2">Helyszín 2</option>
+                    <option value="Helyszín 3">Helyszín 3</option>
+                    <option value="Helyszín 4">Helyszín 4</option>
+                    <option value="Helyszín 5">Helyszín 5</option>
+                </select>
+                <select id="filter-type" class="form-control form-control-sm">
+                    <option value="">Típus szűrése</option>
+                    <option value="Konferencia">Konferencia</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Előadás">Előadás</option>
+                    <option value="Kiállítás">Kiállítás</option>
+                    <option value="Szimpózium">Szimpózium</option>
+                </select>
+            </div>
+
+            <!-- Táblázat -->
+            <div class="table-scrollable">
+                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Neve</th>
+                            <th scope="col">Kezdő Időpont</th>
+                            <th scope="col">Záró Időpont</th>
+                            <th scope="col">Helyszín</th>
+                            <th scope="col">Rendezvény Típusa</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="events-table-body">
+                        <tr>
+                            <td>Rendezvény 1</td>
+                            <td>2025-03-01 10:00</td>
+                            <td>2025-03-01 18:00</td>
+                            <td>Helyszín 1</td>
+                            <td>Konferencia</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=1">Szerkesztés</a></td>
+                        </tr>
+                        <tr>
+                            <td>Rendezvény 2</td>
+                            <td>2025-03-02 09:00</td>
+                            <td>2025-03-02 17:00</td>
+                            <td>Helyszín 2</td>
+                            <td>Workshop</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=2">Szerkesztés</a></td>
+                        </tr>
+                        <tr>
+                            <td>Rendezvény 3</td>
+                            <td>2025-03-05 14:00</td>
+                            <td>2025-03-05 20:00</td>
+                            <td>Helyszín 3</td>
+                            <td>Előadás</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=3">Szerkesztés</a></td>
+                        </tr>
+                        <tr>
+                            <td>Rendezvény 4</td>
+                            <td>2025-03-10 11:00</td>
+                            <td>2025-03-10 15:00</td>
+                            <td>Helyszín 4</td>
+                            <td>Kiállítás</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=4">Szerkesztés</a></td>
+                        </tr>
+                        <tr>
+                            <td>Rendezvény 5</td>
+                            <td>2025-03-15 12:00</td>
+                            <td>2025-03-15 16:00</td>
+                            <td>Helyszín 5</td>
+                            <td>Szimpózium</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr>
+                        <tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr><tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr><tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr><tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr><tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr><tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr><tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr><tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr><tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr><tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr><tr>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td>test</td>
+                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 <!-- Táblázat vége -->
+
 
            <!-- Footer Start -->
         <div class="footer">
