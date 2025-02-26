@@ -268,7 +268,6 @@
 
 
 
-<!-- Táblázat -->
 <div class="container-fluid pt-4 px-4 table-container">
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
@@ -279,13 +278,18 @@
         <!-- Szűrők és Táblázat -->
         <div class="table-wrapper">
             <!-- Szűrők -->
-            <div class="table-filters mb-3">
-                <input type="text" id="filter-name" class="form-control form-control-sm" placeholder="Neve keresése">
+            <div class="table-filters mb-3 d-flex flex-wrap gap-2">
+                <!-- Név szűrő -->
+                <input type="text" id="filter-name" class="form-control form-control-sm flex-grow-1" placeholder="Neve keresése">
                 
-                <input type="date" id="filter-start-time" class="form-control form-control-sm">
-                <input type="date" id="filter-end-time" class="form-control form-control-sm">
+                <!-- Dátum szűrők -->
+                <div class="d-flex flex-grow-1 gap-2">
+                    <input type="date" id="filter-start-time" class="form-control form-control-sm">
+                    <input type="date" id="filter-end-time" class="form-control form-control-sm">
+                </div>
                 
-                <select id="filter-location" class="form-control form-control-sm">
+                <!-- Helyszín és típus szűrők -->
+                <select id="filter-location" class="form-control form-control-sm flex-grow-1">
                     <option value="">Helyszín szűrése</option>
                     <option value="Helyszín 1">Helyszín 1</option>
                     <option value="Helyszín 2">Helyszín 2</option>
@@ -293,7 +297,7 @@
                     <option value="Helyszín 4">Helyszín 4</option>
                     <option value="Helyszín 5">Helyszín 5</option>
                 </select>
-                <select id="filter-type" class="form-control form-control-sm">
+                <select id="filter-type" class="form-control form-control-sm flex-grow-1">
                     <option value="">Típus szűrése</option>
                     <option value="Konferencia">Konferencia</option>
                     <option value="Workshop">Workshop</option>
@@ -364,76 +368,6 @@
                             <td>test</td>
                             <td>test</td>
                             <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
-                        </tr><tr>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
-                        </tr><tr>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
-                        </tr><tr>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
-                        </tr><tr>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
-                        </tr><tr>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
-                        </tr><tr>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
-                        </tr><tr>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
-                        </tr><tr>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
-                        </tr><tr>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
-                        </tr><tr>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td>test</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=5">Szerkesztés</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -441,7 +375,6 @@
         </div>
     </div>
 </div>
-<!-- Táblázat vége -->
 
 
            <!-- Footer Start -->
