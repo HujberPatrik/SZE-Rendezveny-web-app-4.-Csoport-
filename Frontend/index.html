@@ -88,11 +88,10 @@
         <div class="content">
 
 
-
 <!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg navbar-light sticky-top px-4 py-0">
+<nav class="navbar navbar-expand-lg navbar-light sticky-top px-4 py-0 position-relative">
     <!-- Logó (bal oldalon) -->
-    <a href="index.html" class="navbar-brand d-flex me-4">
+    <a href="index.html" class="navbar-brand d-flex me-4 d-none d-md-flex">
         <img src="img/egyetemi logo/allo_RGB/sze_logo_allo_RGB_white_bg.png" 
              alt="SZE Logó" class="img-fluid" style="max-height: 50px;">
     </a>
@@ -137,21 +136,43 @@
         </div>
 
         <!-- Profil menü (mindig látható) -->
-        <div class="nav-item dropdown">
+        <div class="nav-item dropdown position-relative">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                <span class="d-none d-lg-inline-flex">Teszt Pista</span>
-                <span class="d-none d-lg-inline-flex ms-1 text-muted" style="font-size: 0.8rem;">(Admin)</span>
+                <span class="d-none d-lg-inline-flex" style="color: #50adc9;">Teszt Pista</span> 
+                <span class="d-none d-lg-inline-flex ms-1 text-muted" style="font-size: 0.8rem;">(Admin)</span> <!-- Státusz -->
             </a>
-            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <a href="#" class="dropdown-item">Saját profil</a>
-                <a href="#" class="dropdown-item">Beállítások</a>
-                <a href="#" class="dropdown-item">Kijelentkezés</a>
+            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0 position-absolute profile-dropdown">
+                <!-- Dark mode and notifications  -->
+                <a href="#" class="dropdown-item d-block d-lg-none" id="notifications-text" style="color: #50adc9;" >
+                    Teszt Pista (Admin)
+                </a>
+
+                <a href="#" class="dropdown-item d-block d-lg-none" id="dark-mode-text" >
+                    <i class="fa fa-moon me-2"></i> Sötét mód
+                </a>
+                <a href="#" class="dropdown-item d-block d-lg-none" id="notifications-text">
+                    <i class="fa fa-bell me-2"></i> Értesítések
+                </a>
+
+                <!-- Profile dropdown items with small icons -->
+                <a href="#" class="dropdown-item">
+                    <i class="fa fa-user me-2"></i> Saját profil
+                </a>
+                <a href="#" class="dropdown-item">
+                    <i class="fa fa-cogs me-2"></i> Beállítások
+                </a>
+
+                <!-- Kijelentkezés button with red color and icon -->
+                <a href="#" class="dropdown-item text-danger">
+                    <i class="fa fa-sign-out-alt me-2"></i> Kijelentkezés
+                </a>
             </div>
         </div>
     </div>
 </nav>
 <!-- Navbar End -->
+
 
 
 <!-- Accordion -->
@@ -345,5 +366,10 @@
     <!-- Javascript -->
     <script src="js/main.js"></script>
 </body>
+
+<style>
+
+</style>
+
 
 </html>

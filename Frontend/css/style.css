@@ -375,4 +375,9 @@ body.dark-mode nav {
     height: auto;
 }
 
-
+/* Nagyon kicsi kijelzőn eltünik a keresés */
+@media (max-width: 379px) {
+    .navbar form, .navbar button {
+        display: none !important;
+    }
+}
