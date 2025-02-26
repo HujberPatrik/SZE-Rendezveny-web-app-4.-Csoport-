@@ -45,15 +45,24 @@
         </div>
         <!-- Spinner End -->
 
+
+
         <!-- Sidebar Start -->
-        <div class="sidebar pe-4 pb-3" style="background-color: #242943;">
+        <div class="sidebar pe-4 pb-3" style="background-color: #242943; height: 100vh; position: fixed; top: 0; left: 0; width: 250px;">
             <nav class="navbar navbar-light" style="background-color: #242943;">
-                <a href="index.html" class="navbar-brand d-flex align-items-center mx-4 mb-3">
+                <!-- Logó elrejtése kis képernyőkön -->
+                <a href="index.html" class="navbar-brand d-none d-md-flex align-items-center mx-4 mb-3">
                     <img src="img/egyetemi logo/fekvo_RGB/sze_logo_fekvo_RGB_negativ.png" alt="SZE Logó" height="60px">
                 </a>
+                
+                <!-- Placeholder for logo when hidden on smaller screens (larger gap) -->
+                <div class="d-flex d-md-none" style="height: 95px; margin-top: 15px;"></div>
+                
                 <div class="d-flex align-items-center ms-4 mb-4">
                 </div>
-                <div class="navbar-nav w-100">
+                
+                <!-- Gombok görgethető konténerben -->
+                <div class="navbar-nav w-100" style="flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; position: relative;">
                     <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Főoldal</a>
                     <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Táblázat</a>
                     <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Diagrammok</a>
@@ -70,6 +79,11 @@
         </div>
         <!-- Sidebar End -->
 
+
+
+
+        <!-- Sidebar End -->
+
         <!-- Content Start -->
         <div class="content">
 
@@ -77,30 +91,39 @@
 
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg navbar-light sticky-top px-4 py-0">
-    <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+    <!-- Logó (bal oldalon) -->
+    <a href="index.html" class="navbar-brand d-flex me-4">
         <img src="img/egyetemi logo/allo_RGB/sze_logo_allo_RGB_white_bg.png" 
-     alt="SZE Logó" class="img-fluid" style="max-height: 50px;">
+             alt="SZE Logó" class="img-fluid" style="max-height: 50px;">
     </a>
-    <a href="#" class="sidebar-toggler flex-shrink-0">
-        <i class="fa fa-bars"></i>
-    </a>
-    <form class="d-none d-md-flex ms-4">
-        <input class="form-control border-0" type="search" placeholder="Keresés">
-        <button class="btn button_navbar ms-2 rounded-circle" id="buttons_navbar" type="submit">
-            <i class="fa fa-search" style="color: #242943;"></i>
-        </button>
-    </form>
+
+    <!-- Hamburger menü és keresőmező (bal oldalon, egymás mellett, kis képernyőkön is) -->
+    <div class="d-flex align-items-center flex-nowrap flex-grow-1">
+        <!-- Hamburger menü -->
+        <a href="#" class="sidebar-toggler flex-shrink-0 me-3">
+            <i class="fa fa-bars"></i>
+        </a>
+
+        <!-- Keresőmező -->
+        <form class="d-flex flex-grow-1" style="max-width: 200px;">
+            <input class="form-control border-0" type="search" placeholder="Keresés">
+            <button class="btn button_navbar ms-2 rounded-circle" id="buttons_navbar" type="submit">
+                <i class="fa fa-search" style="color: #242943;"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- Jobb oldali elemek (értesítések és sötét mód csak nagy képernyőkön, profil ikon mindig látható) -->
     <div class="navbar-nav align-items-center ms-auto">
-        
-        <div class="nav-item">
-           <!-- Világos/Sötét mód kapcsoló -->
+        <!-- Sötét mód váltó (csak nagy képernyőkön) -->
+        <div class="nav-item d-none d-lg-flex">
             <button class="btn button_navbar ms-2 rounded-circle" id="dark-mode-toggle">
-                <i id="mode-icon" class="fa fa-moon" style="color: #242943;"></i> <!-- Kezdetben a hold ikon -->
+                <i id="mode-icon" class="fa fa-moon" style="color: #242943;"></i>
             </button>
         </div>
-        
 
-        <div class="nav-item dropdown">
+        <!-- Értesítések (csak nagy képernyőkön) -->
+        <div class="nav-item dropdown d-none d-lg-flex">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <i class="fa fa-bell me-lg-2" style="color: #242943;"></i>
                 <span class="d-none d-lg-inline-flex">Értesítések</span>
@@ -112,11 +135,13 @@
                 </a>
             </div>
         </div>
-        
+
+        <!-- Profil menü (mindig látható) -->
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                <span class="d-none d-lg-inline-flex">Teszt Pista</span><span class="d-none d-lg-inline-flex ms-1 text-muted" style="font-size: 0.8rem;">(Admin)</span>
+                <span class="d-none d-lg-inline-flex">Teszt Pista</span>
+                <span class="d-none d-lg-inline-flex ms-1 text-muted" style="font-size: 0.8rem;">(Admin)</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                 <a href="#" class="dropdown-item">Saját profil</a>
@@ -124,15 +149,9 @@
                 <a href="#" class="dropdown-item">Kijelentkezés</a>
             </div>
         </div>
-
     </div>
 </nav>
 <!-- Navbar End -->
-
-
-
-
-
 
 
 <!-- Accordion -->
