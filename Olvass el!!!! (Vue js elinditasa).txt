@@ -1,0 +1,12 @@
+Tölsd le a nodejs-t !!!!!!!!!!!!
+
+nyisd meg a CMD-t 
+és írd be:
+npm create vue@latest
+
+CMD be írd be még:
+CD ..."vuefile mappaja"
+npm i
+npm run dev
+
+localhoston fut a vue file
