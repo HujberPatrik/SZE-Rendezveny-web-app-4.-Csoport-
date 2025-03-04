@@ -21,9 +21,12 @@
           />
           <span v-if="errors.eventNature" class="error">{{ errors.eventNature }}</span>
         </div>
+      </div>
 
+      <!-- Részletes programterv és Helyszín berendezési módja -->
+      <div class="form-row program-and-layout">
         <!-- Részletes programterv -->
-        <div class="form-group">
+        <div class="form-group detailed-program">
           <label for="eventProgram">Részletes programterv *</label>
           <textarea
             id="eventProgram"
@@ -34,11 +37,9 @@
           ></textarea>
           <span v-if="errors.eventProgram" class="error">{{ errors.eventProgram }}</span>
         </div>
-      </div>
 
-      <!-- Helyszín berendezési módja -->
-      <div class="form-row">
-        <div class="form-group">
+        <!-- Helyszín berendezési módja -->
+        <div class="form-group layout-arrangement">
           <label for="venueSetup">Helyszín berendezési módja</label>
           <textarea
             id="venueSetup"
@@ -49,69 +50,128 @@
         </div>
       </div>
 
-      <!-- Igen/Nem választó mezők csoportosítva és csukható menükben -->
-      <div class="accordion">
-        <div
-          class="accordion-item"
-          v-for="(group, index) in groupedYesNoFields"
-          :key="index"
-        >
-          <h3 class="accordion-header">
-            <button
-              class="accordion-button"
-              :class="{ collapsed: activeAccordion !== index }"
-              type="button"
-              @click="toggleAccordion(index)"
-              :aria-expanded="activeAccordion === index ? 'true' : 'false'"
-              :aria-controls="'collapse' + index"
-            >
-              Csoport {{ index + 1 }}
-            </button>
-          </h3>
+      <!-- Igen/Nem választó mezők csoportosítva és egymás mellett -->
+      <div class="accordion-group">
+        <!-- Csoportok fejlécei -->
+        <div class="accordion-headers">
           <div
-            :id="'collapse' + index"
-            class="accordion-collapse collapse"
-            :class="{ show: activeAccordion === index }"
-            :aria-labelledby="'heading' + index"
+            class="accordion-header"
+            v-for="(group, index) in groupedYesNoFields"
+            :key="index"
+            @click="toggleAccordion(index)"
+            :class="{ active: activeAccordion === index }"
           >
-            <div class="accordion-body">
-              <div class="form-row">
-                <div
-                  class="form-group"
-                  v-for="field in group"
-                  :key="field.id"
-                >
-                  <label>{{ field.label }} *</label>
-                  <div class="radio-group">
-                    <input
-                      type="radio"
-                      :id="field.id + '_igen'"
-                      :name="field.id"
-                      value="igen"
-                      v-model="field.value"
-                    />
-                    <label :for="field.id + '_igen'">Igen</label>
-                    <input
-                      type="radio"
-                      :id="field.id + '_nem'"
-                      :name="field.id"
-                      value="nem"
-                      v-model="field.value"
-                      class="ms-3"
-                    />
-                    <label :for="field.id + '_nem'">Nem</label>
-                  </div>
-                  <span v-if="errors[field.id]" class="error">{{ errors[field.id] }}</span>
+            Kérdőív {{ index + 1 }}
+          </div>
+        </div>
+
+        <!-- Közös tartalomterület -->
+        <div class="accordion-content">
+          <div
+            class="accordion-body"
+            v-if="activeAccordion !== null"
+          >
+            <div class="form-row grouped-fields">
+              <div
+                class="form-group"
+                v-for="field in groupedYesNoFields[activeAccordion]"
+                :key="field.id"
+              >
+                <label>{{ field.label }} *</label>
+                <div class="radio-group">
+                  <input
+                    type="radio"
+                    :id="field.id + '_igen'"
+                    :name="field.id"
+                    value="igen"
+                    v-model="field.value"
+                  />
+                  <label :for="field.id + '_igen'">Igen</label>
+                  <input
+                    type="radio"
+                    :id="field.id + '_nem'"
+                    :name="field.id"
+                    value="nem"
+                    v-model="field.value"
+                    class="ms-3"
+                  />
+                  <label :for="field.id + '_nem'">Nem</label>
                 </div>
+                <!-- Szállásigény létszám mezője, ha az "Igen" opció van kiválasztva -->
+                <div v-if="field.id === 'accommodation' && field.value === 'igen'" class="form-group">
+                  <label for="accommodationCount">Szállásigény várható létszáma *</label>
+                  <input
+                    type="number"
+                    id="accommodationCount"
+                    v-model="accommodationCount"
+                    placeholder="Adja meg a létszámot"
+                    class="form-control"
+                    required
+                  />
+                  <span v-if="errors.accommodationCount" class="error">{{ errors.accommodationCount }}</span>
+                </div>
+                <!-- Parkolóhely igény részletei, ha az "Igen" opció van kiválasztva -->
+                <div v-if="field.id === 'parking' && field.value === 'igen'" class="form-group">
+                  <label for="parkingDetails">Várható gépkocsiforgalom és parkolóhely igény *</label>
+                  <textarea
+                    id="parkingDetails"
+                    v-model="parkingDetails"
+                    placeholder="Adja meg a várható gépkocsiforgalom és parkolóhely igény részleteit"
+                    class="form-control"
+                    required
+                  ></textarea>
+                  <span v-if="errors.parkingDetails" class="error">{{ errors.parkingDetails }}</span>
+                </div>
+                <!-- Hulladék elszállításának módja, ha az "Igen" opció van kiválasztva -->
+                <div v-if="field.id === 'waste' && field.value === 'igen'" class="form-group">
+                  <label for="wasteDisposalMethod">Hulladék elszállításának módja *</label>
+                  <select
+                    id="wasteDisposalMethod"
+                    v-model="wasteDisposalMethod"
+                    class="form-control"
+                    required
+                  >
+                    <option value="" disabled>Válasszon egy opciót</option>
+                    <option value="sajat">Saját úton</option>
+                    <option value="egyetem">Egyetem által biztosítva</option>
+                  </select>
+                  <span v-if="errors.wasteDisposalMethod" class="error">{{ errors.wasteDisposalMethod }}</span>
+                  <!-- Ha a "Saját úton" opció van kiválasztva -->
+                  <div v-if="wasteDisposalMethod === 'sajat'" class="form-group">
+                    <label for="wasteDisposalResponsible">Ki végzi a hulladék elszállítását? *</label>
+                    <input
+                      type="text"
+                      id="wasteDisposalResponsible"
+                      v-model="wasteDisposalResponsible"
+                      placeholder="Adja meg a felelős személyt vagy céget"
+                      class="form-control"
+                      required
+                    />
+                    <span v-if="errors.wasteDisposalResponsible" class="error">{{ errors.wasteDisposalResponsible }}</span>
+                  </div>
+                </div>
+                <!-- Oktatástechnikai eszközigény, ha az "Igen" opció van kiválasztva -->
+                <div v-if="field.id === 'technicalSupport' && field.value === 'igen'" class="form-group">
+                  <label for="technicalEquipmentNeeds">Oktatástechnikai eszközigény *</label>
+                  <textarea
+                    id="technicalEquipmentNeeds"
+                    v-model="technicalEquipmentNeeds"
+                    placeholder="Adja meg az oktatástechnikai eszközigény részleteit"
+                    class="form-control"
+                    required
+                  ></textarea>
+                  <span v-if="errors.technicalEquipmentNeeds" class="error">{{ errors.technicalEquipmentNeeds }}</span>
+                </div>
+                <span v-if="errors[field.id]" class="error">{{ errors[field.id] }}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Villanyszerelői ügyelet és Várható tevékenységek -->
-      <div class="form-row">
-        <div class="form-group">
+      <!-- Villanyszerelői ügyelet és Várható tevékenységek egymás mellett -->
+      <div class="form-row electrician-and-activities">
+        <div class="form-group electrician-duty">
           <label for="electricianDuty">Szükséges villanyszerelői ügyelet? *</label>
           <select id="electricianDuty" v-model="electricianDuty" class="form-control" required>
             <option value="" disabled>Válasszon egy opciót</option>
@@ -123,7 +183,7 @@
           <span v-if="errors.electricianDuty" class="error">{{ errors.electricianDuty }}</span>
         </div>
 
-        <div class="form-group">
+        <div class="form-group expected-activities">
           <label for="expectedActivities">Várható-e az alábbi tevékenységek közül valamelyik? *</label>
           <select
             id="expectedActivities"
@@ -151,8 +211,8 @@ export default {
       eventProgram: "",
       venueSetup: "",
       electricianDuty: "",
-      expectedActivity: "", // Egyetlen választott tevékenység
-      activities: ["por", "füst", "páraképződés", "egyik sem várható"], // Opciók
+      expectedActivity: "",
+      activities: ["por", "füst", "páraképződés", "egyik sem várható"],
       yesNoFields: [
         { id: "accommodation", label: "Van a rendezvény idejére szállásigénye?", value: "" },
         { id: "parking", label: "Van parkolóhely igénye?", value: "" },
@@ -170,12 +230,16 @@ export default {
         { id: "chemicals", label: "Vegyi anyag felhasználása várható-e?", value: "" },
         { id: "decoration", label: "Várható-e dekoráció a helyiség légterében?", value: "" },
       ],
-      activeAccordion: null, // Aktív accordion indexe
+      accommodationCount: "", // Szállásigény létszáma
+      parkingDetails: "", // Parkolóhely részletei
+      wasteDisposalMethod: "", // Hulladék elszállításának módja
+      wasteDisposalResponsible: "", // Ki végzi a hulladék elszállítását
+      technicalEquipmentNeeds: "", // Oktatástechnikai eszközigény
+      activeAccordion: 0,
       errors: {},
     };
   },
   computed: {
-    // Igen/Nem mezők csoportosítása 4-esével
     groupedYesNoFields() {
       const groupSize = 4;
       return this.yesNoFields.reduce((groups, field, index) => {
@@ -190,8 +254,43 @@ export default {
   },
   methods: {
     toggleAccordion(index) {
-      // Csak egy accordion lehet nyitva egyszerre
       this.activeAccordion = this.activeAccordion === index ? null : index;
+    },
+    validateForm() {
+      this.errors = {};
+
+      // Szállásigény validáció
+      const accommodationField = this.yesNoFields.find(field => field.id === "accommodation");
+      if (accommodationField && accommodationField.value === "igen" && !this.accommodationCount) {
+        this.errors.accommodationCount = "Kötelező megadni a szállásigény várható létszámát.";
+      }
+
+      // Parkolóhely validáció
+      const parkingField = this.yesNoFields.find(field => field.id === "parking");
+      if (parkingField && parkingField.value === "igen" && !this.parkingDetails) {
+        this.errors.parkingDetails = "Kötelező megadni a várható gépkocsiforgalom és parkolóhely igény részleteit.";
+      }
+
+      // Hulladék validáció
+      const wasteField = this.yesNoFields.find(field => field.id === "waste");
+      if (wasteField && wasteField.value === "igen") {
+        if (!this.wasteDisposalMethod) {
+          this.errors.wasteDisposalMethod = "Kötelező megadni a hulladék elszállításának módját.";
+        }
+        if (this.wasteDisposalMethod === "sajat" && !this.wasteDisposalResponsible) {
+          this.errors.wasteDisposalResponsible = "Kötelező megadni, ki végzi a hulladék elszállítását.";
+        }
+      }
+
+      // Oktatástechnikai támogatás validáció
+      const technicalSupportField = this.yesNoFields.find(field => field.id === "technicalSupport");
+      if (technicalSupportField && technicalSupportField.value === "igen" && !this.technicalEquipmentNeeds) {
+        this.errors.technicalEquipmentNeeds = "Kötelező megadni az oktatástechnikai eszközigényt.";
+      }
+
+      // További validációk...
+
+      return Object.keys(this.errors).length === 0;
     },
   },
 };

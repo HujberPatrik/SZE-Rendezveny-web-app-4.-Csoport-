@@ -122,7 +122,7 @@ html {
 
 /* Navigációs gombok */
 .nav-button {
-  background-color: #4CAF50;
+  background-color: #50adc9;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -139,7 +139,7 @@ html {
 .progress-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 10px
 }
 
 progress {
@@ -154,7 +154,7 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-  background-color: #4CAF50;
+  background-color: #50adc9;
   border-radius: 5px;
 }
 
@@ -174,13 +174,13 @@ progress::-webkit-progress-value {
   padding: 10px 20px;
   font-size: 1rem;
   color: white;
-  background-color: #4CAF50;
+  background-color: #50adc9;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .button-container button:hover {
-  background-color: #45a049;
+  background-color: #50adc9;
 }
 </style>

@@ -94,7 +94,7 @@
         errors: {},
         pages: [
           {
-            title: 'MEGRENDELŐ (JOGI HÁTTÉR ESETÉN) ADATAI',
+            title: 'FÁJLFELTÖLTÉS ÉS FELHASZNÁLÓI SZERZŐDÉS',
             type: 'client'
           }
         ]
