@@ -1,0 +1,95 @@
+<template>
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top px-4 py-3 bg-light">
+      <a href="index.html" class="navbar-brand d-flex">
+        <img
+          src="../img/egyetemi logo/fekvo_RGB/sze_logo_fekvo_RGB_white_bg.png"
+          alt="SZE Logó"
+          class="img-fluid"
+          style="max-height: 50px"
+        />
+      </a>
+      <div class="navbar-text ms-3" style="font-size: 1.2rem; font-weight: 500;">
+        Rendezvénybejelentő űrlap - Széchenyi István Egyetem
+      </div>
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <a href="https://uni.sze.hu/" class="btn rounded-circle btn-primary">
+          <i class="fa fa-arrow-left text-white"></i>
+        </a>
+        <button class="btn rounded-circle btn-primary" @click="toggleDarkMode">
+          <i :class="darkMode ? 'fa fa-sun' : 'fa fa-moon'" class="text-white"></i>
+        </button>
+        <a href="/admin" class="btn rounded-circle btn-primary">
+          <i class="fa fa-user text-white"></i>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Pages -->
+    <div class="container mt-4">
+      <div v-for="(page, index) in pages" :key="index" :id="'page' + (index + 1)" v-show="activePage === index + 1">
+        <h2 class="mb-4">{{ page.title }}</h2>
+        <div v-if="page.type === 'text'" class="row g-3">
+          <div class="col-md-6" v-for="input in page.inputs" :key="input.placeholder">
+            <input type="text" :placeholder="input.placeholder" class="form-control" />
+          </div>
+        </div>
+        
+        <div class="row g-3 mt-3">
+          <div class="col-md-6">
+            <label>Rendezvény típusa *</label>
+            <select v-model="eventType" class="form-control">
+              <option v-for="type in eventTypes" :key="type" :value="type">{{ type }}</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label>Rendezvény minősítése *</label>
+            <select v-model="eventClassification" class="form-control">
+              <option v-for="qualification in eventQualifications" :key="qualification" :value="qualification">{{ qualification }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-3">
+          <div class="col-md-6">
+            <label>Rendezvény résztvevőinek várható létszáma (fő) *</label>
+            <input type="number" v-model="expectedParticipants" placeholder="Adja meg a létszámot" class="form-control" />
+          </div>
+          <div class="col-md-6">
+            <label>Sajtónyilvános rendezvény? *</label>
+            <div class="d-flex gap-3">
+              <div class="form-check">
+                <input type="radio" id="sajto_igen" name="sajto" value="igen" v-model="pressPublicity" class="form-check-input" />
+                <label for="sajto_igen" class="form-check-label">Igen</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" id="sajto_nem" name="sajto" value="nem" v-model="pressPublicity" class="form-check-input" />
+                <label for="sajto_nem" class="form-check-label">Nem</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <button @click="navigate(activePage - 1)" :disabled="activePage === 1" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left"></i> Vissza
+          </button>
+          <div class="page-indicator">
+            <span v-for="(indicator, indIndex) in pages" :key="indIndex" :class="{ active: indIndex + 1 === activePage }"></span>
+          </div>
+          <button @click="navigate(activePage + 1)" :disabled="activePage === pages.length" class="btn btn-primary">
+            Következő <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-3 bg-light text-center">
+      <div class="container">
+        <p>&copy; 2025 Széchenyi István Egyetem - Minden jog fenntartva.</p>
+      </div>
+    </footer>
+  </div>
+</template>

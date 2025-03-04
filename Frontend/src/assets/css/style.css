@@ -1,0 +1,423 @@
+:root {
+    --primary: #50adc9; /* Főszín 1 */
+    --light: #ffffff;
+    --dark: #242943;
+    --font-family: 'Montserrat', sans-serif; /* Betűtípus */
+
+}
+
+/* Az egész oldalra alkalmazza a betűtípust */
+* {
+    font-family: var(--font-family);
+}
+
+/*** Spinner ***/
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+
+/*** Button ***/
+.btn {
+    transition: .5s;
+}
+
+.btn.btn-primary {
+    color: #FFFFFF;
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    border-radius: 50px;
+}
+
+/*** Layout ***/
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--dark);
+    transition: 0.5s;
+    z-index: 999;
+}
+
+.content {
+    margin-left: 250px;
+    min-height: 100vh;
+    background: #FFFFFF;
+    transition: 0.5s;
+}
+
+body.dark-mode .content {
+    background: #2e2e2e; /* sötét mód */
+}
+
+
+@media (min-width: 992px) {
+    .sidebar {
+        margin-left: 0;
+    }
+
+    .sidebar.open {
+        margin-left: -250px;
+    }
+
+    .content {
+        width: calc(100% - 250px);
+    }
+
+    .content.open {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        margin-left: -250px;
+    }
+
+    .sidebar.open {
+        margin-left: 0;
+    }
+
+    .content {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+/*** Navbar ***/
+.sidebar .navbar .navbar-nav .nav-link {
+    padding: 7px 20px;
+    color: var(--dark);
+    font-weight: 500;
+    border-left: 3px solid var(--dark);
+    border-radius: 0 30px 30px 0;
+    outline: none;
+}
+
+.sidebar .navbar .navbar-nav .nav-link:hover,
+.sidebar .navbar .navbar-nav .nav-link.active {
+    color: var(--primary);
+    background: #FFFFFF;
+    border-color: var(--primary);
+}
+
+.sidebar .navbar .navbar-nav .nav-link i {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #50adc9;
+    border-radius: 40px;
+}
+
+.sidebar .navbar .navbar-nav .nav-link:hover i,
+.sidebar .navbar .navbar-nav .nav-link.active i {
+    background: var(--dark);
+}
+
+/* Dark mode */
+body.dark-mode .content .navbar .navbar-nav .nav-link {
+    color: var(--light); /* sötét mód */
+}
+
+
+
+
+.sidebar .navbar .dropdown-toggle::after {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    transition: .5s;
+}
+
+.sidebar .navbar .dropdown-toggle[aria-expanded=true]::after {
+    transform: rotate(-180deg);
+}
+
+.sidebar .navbar .dropdown-item {
+    padding-left: 25px;
+    border-radius: 0 30px 30px 0;
+}
+
+.content .navbar .navbar-nav .nav-link {
+    margin-left: 25px;
+    padding: 12px 0;
+    color: var(--dark);
+    outline: none;
+}
+
+.content .navbar .navbar-nav .nav-link:hover,
+.content .navbar .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+.content .navbar .sidebar-toggler,
+.content .navbar .navbar-nav .nav-link i {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border-radius: 40px;
+}
+
+.content .navbar .dropdown-toggle::after {
+    margin-left: 6px;
+    vertical-align: middle;
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    transition: .5s;
+}
+
+.content .navbar .dropdown-toggle[aria-expanded=true]::after {
+    transform: rotate(-180deg);
+}
+
+@media (max-width: 575.98px) {
+    .content .navbar .navbar-nav .nav-link {
+        margin-left: 15px;
+    }
+}
+
+
+/*** Date Picker ***/
+.bootstrap-datetimepicker-widget.bottom {
+    top: auto !important;
+}
+
+.bootstrap-datetimepicker-widget .table * {
+    border-bottom-width: 0px;
+}
+
+.bootstrap-datetimepicker-widget .table th {
+    font-weight: 500;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu {
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.bootstrap-datetimepicker-widget table td.active,
+.bootstrap-datetimepicker-widget table td.active:hover {
+    background: var(--primary);
+}
+
+.bootstrap-datetimepicker-widget table td.today::before {
+    border-bottom-color: var(--primary);
+}
+
+
+/*** Testimonial ***/
+.progress .progress-bar {
+    width: 0px;
+    transition: 2s;
+}
+
+
+/*** Testimonial ***/
+.testimonial-carousel .owl-dots {
+    margin-top: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.testimonial-carousel .owl-dot {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+    width: 15px;
+    height: 15px;
+    border: 5px solid var(--primary);
+    border-radius: 15px;
+    transition: .5s;
+}
+
+.testimonial-carousel .owl-dot.active {
+    background: var(--dark);
+    border-color: var(--primary);
+}
+
+
+
+/* Az összes link szövege fehér */
+.sidebar .navbar .navbar-nav .nav-link {
+    color: #ffffff; 
+}
+
+/* Aktív link színének és hátterének beállítása */
+.sidebar .navbar .navbar-nav .nav-link.active {
+    color: #ffffff; 
+    background-color: rgb(80, 173, 201); 
+    border-color: rgb(80, 173, 201); 
+}
+
+.sidebar .navbar .navbar-nav .nav-link:hover {
+    color: #ffffff; 
+    background-color: rgb(80, 173, 201); 
+    border-color: rgb(80, 173, 201); 
+}
+
+
+
+
+
+/* Navbar gombok */
+#buttons_navbar {
+    background-color: #ffffff;
+    padding: 12px;
+    width: 42px;
+    height: 42px;  
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+}
+#dark-mode-toggle {
+    background-color: #ffffff;
+    padding: 12px;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+}
+.nav-item span.text-muted {
+    font-size: 0.8rem;  
+    color: #888;        
+    margin-left: 5px;   
+}
+/* / */
+
+
+
+
+
+
+/* SZÍN VÁLTÁS !!!!!!!!!!! */
+
+nav {
+    background-color: #f0f0f0; 
+}
+
+body.dark-mode nav {
+    background-color:  #242943; 
+    color: #ffffff;
+}
+
+/* Alapértelmezett világos mód */
+.accordion-item {
+    background-color: #f8f9fa; 
+}
+
+.accordion-button {
+    background-color: #f8f9fa; 
+    color: #000000; 
+}
+
+.accordion-body {
+    background-color: #ffffff; 
+    color: #000000; 
+}
+
+.responsive-logo {
+    max-width: 0%;
+    height: auto;
+}
+
+/* Nagyon kicsi kijelzőn eltünik a keresés */
+@media (max-width: 379px) {
+    .navbar form, .navbar button {
+        display: none !important;
+    }
+}
+
+
+
+/* Táblázat */
+.table-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.table-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    justify-content: flex-start;
+}
+
+.table-filters input, .table-filters select {
+    width: 180px;
+}
+
+.table-scrollable {
+    height: 600px;
+    overflow-y: auto;
+}
+
+/* Táblázat szűrő oszlopok igazítása */
+.table th, .table td {
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
