@@ -6,31 +6,37 @@
     <component :is="currentPage" />
 
     <!-- Navigáció és kitöltési csík -->
-    <div class="navigation-container">
-      <!-- Balra gomb -->
-      <button @click="navigate(activePage - 1)" :disabled="activePage === 1" class="nav-button">
+    <div class="navigation-container bg-light fixed-bottom p-3">
+      <!-- Balra gomb (csak akkor jelenik meg, ha nem az első oldalon vagyunk) -->
+      <button
+        v-if="activePage !== 1"
+        @click="navigate(activePage - 1)"
+        class="nav-button btn btn-primary"
+      >
         <i class="bi bi-arrow-left"></i> <!-- Balra nyíl ikon -->
       </button>
 
       <!-- Kitöltési csík -->
       <div class="progress-container">
-        <progress :value="progress" max="100"></progress>
+        <progress :value="progress" max="100" class="custom-progress"></progress>
         <span>{{ progress }}%</span>
       </div>
 
-      <!-- Jobbra gomb -->
-      <button @click="navigate(activePage + 1)" :disabled="activePage === totalPages" class="nav-button">
+      <!-- Jobbra gomb vagy Küldés gomb (utolsó oldalon) -->
+      <button
+        v-if="activePage !== totalPages"
+        @click="navigate(activePage + 1)"
+        class="nav-button btn btn-primary"
+      >
         <i class="bi bi-arrow-right"></i> <!-- Jobbra nyíl ikon -->
       </button>
-    </div>
-
-    <!-- Gombok az oldal alján -->
-    <div class="button-container">
-      <button @click="changePage('Pages')">Pages</button>
-      <button @click="changePage('Pages2')">Pages2</button>
-      <button @click="changePage('Pages3')">Pages3</button>
-      <button @click="changePage('Pages4')">Pages4</button>
-      <button @click="changePage('Pages5')">Pages5</button>
+      <button
+        v-else
+        @click="submit"
+        class="submit-button btn btn-primary"
+      >
+        Küldés
+      </button>
     </div>
   </div>
 </template>
@@ -66,11 +72,6 @@ export default {
     },
   },
   methods: {
-    // Oldal váltása
-    changePage(page) {
-      this.currentPage = page;
-      this.activePage = this.getPageIndex(page) + 1;
-    },
     // Navigáció
     navigate(page) {
       if (page >= 1 && page <= this.totalPages) {
@@ -83,16 +84,17 @@ export default {
       const pages = ['Pages', 'Pages2', 'Pages3', 'Pages4', 'Pages5'];
       return pages[index - 1];
     },
-    // Oldal indexének lekérése a név alapján
-    getPageIndex(page) {
-      const pages = ['Pages', 'Pages2', 'Pages3', 'Pages4', 'Pages5'];
-      return pages.indexOf(page);
+    // Küldés gomb eseménykezelője
+    submit() {
+      alert('Adatok elküldve!'); // Példa: helyettesíthető valós logikával
+      // Itt lehet API hívást vagy más műveletet végrehajtani
     },
   },
 };
 </script>
 
 <style scoped>
+/* Alap stílusok */
 * {
   margin: 0;
   padding: 0;
@@ -108,79 +110,36 @@ html {
 
 /* Navigációs konténer */
 .navigation-container {
-  position: fixed;
-  bottom: 60px; /* A gombok felett */
-  left: 0;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  background-color: #242943;
+  width: 100%;
   padding: 10px;
-}
-
-/* Navigációs gombok */
-.nav-button {
-  background-color: #50adc9;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.nav-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Árnyék hozzáadása */
 }
 
 /* Kitöltési csík */
 .progress-container {
   display: flex;
   align-items: center;
-  gap: 10px
+  gap: 10px;
 }
 
-progress {
-  width: 200px;
+.custom-progress {
+  width: 400px; /* Hosszabb csík */
   height: 10px;
   border-radius: 5px;
+  pointer-events: none; /* Letiltja a felhasználói interakciót */
 }
 
-progress::-webkit-progress-bar {
+.custom-progress::-webkit-progress-bar {
   background-color: #ddd;
   border-radius: 5px;
 }
 
-progress::-webkit-progress-value {
+.custom-progress::-webkit-progress-value {
   background-color: #50adc9;
   border-radius: 5px;
-}
-
-/* Gombok az oldal alján */
-.button-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #242943;
-  padding: 10px;
-  text-align: center;
-}
-
-.button-container button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  color: white;
-  background-color: #50adc9;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.button-container button:hover {
-  background-color: #50adc9;
 }
 </style>

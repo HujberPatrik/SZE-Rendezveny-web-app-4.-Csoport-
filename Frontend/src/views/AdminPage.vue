@@ -9,7 +9,7 @@
             <nav class="navbar navbar-light" style="background-color: #242943;">
                 <!-- Logó elrejtése kis képernyőkön -->
                 <a href="index.html" class="navbar-brand d-none d-md-flex align-items-center mx-4 mb-3">
-                    <img src="img/egyetemi logo/fekvo_RGB/sze_logo_fekvo_RGB_negativ.png" alt="SZE Logó" height="60px">
+                    <img src="../img/egyetemi logo/fekvo_RGB/sze_logo_fekvo_RGB_negativ.png" alt="SZE Logó" height="60px">
                 </a>
                 
                 <!-- Placeholder for logo when hidden on smaller screens (larger gap) -->
