@@ -1,71 +1,44 @@
---
--- PostgreSQL database dump
---
+CREATE DATABASE "RendezvenyApp"
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'hu-HU'
+    LC_CTYPE = 'hu-HU'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
 
--- Dumped from database version 17.4
--- Dumped by pg_dump version 17.4
+CREATE TABLE IF NOT EXISTS public."statusz"
+(
+    "id" integer NOT NULL,
+    "statusz" character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "statusz_pkey" PRIMARY KEY ("id")
+)
 
--- Started on 2025-02-26 17:37:22
+TABLESPACE pg_default;
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET transaction_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
+ALTER TABLE IF EXISTS public."statusz"
+    OWNER to postgres;
 
-DROP DATABASE IF EXISTS "RendezvenyApp";
---
--- TOC entry 4795 (class 1262 OID 16395)
--- Name: RendezvenyApp; Type: DATABASE; Schema: -; Owner: postgres
---
+CREATE TABLE IF NOT EXISTS public."kerveny"
+(
+    "id" integer NOT NULL,
+    "nev" character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    "statusz" integer NOT NULL,
+    "datum" date NOT NULL,
+    "helyszin" character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    "letszam" integer NOT NULL,
+    "email" character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    "telefonszam" character varying(12) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "kerveny_pkey" PRIMARY KEY ("id"),
+    CONSTRAINT "statuszFk" FOREIGN KEY ("statusz")
+        REFERENCES public."statusz" ("id") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
 
-CREATE DATABASE "RendezvenyApp" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'hu-HU';
+TABLESPACE pg_default;
 
-
-ALTER DATABASE "RendezvenyApp" OWNER TO postgres;
-
-\connect "RendezvenyApp"
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET transaction_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- TOC entry 4788 (class 0 OID 16396)
--- Dependencies: 217
--- Data for Name: kerveny; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.kerveny (id, nev, helyszin, statusz, email, telefon, letszam) FROM stdin;
-\.
-
-
---
--- TOC entry 4797 (class 0 OID 0)
--- Dependencies: 218
--- Name: kerveny_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.kerveny_id_seq', 1, false);
-
-
--- Completed on 2025-02-26 17:37:22
-
---
--- PostgreSQL database dump complete
---
-
+ALTER TABLE IF EXISTS public."kerveny"
+    OWNER to postgres;
