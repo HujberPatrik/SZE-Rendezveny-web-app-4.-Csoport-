@@ -415,9 +415,21 @@ body.dark-mode nav {
 
 
 
-
-
-
-
-
-
+.navbar-text {
+    font-size: 1.8rem;
+    font-weight: 500;
+    white-space: nowrap; /* Megakadályozza a sortörést */
+  }
+  
+  @media (max-width: 992px) {  /* Tablet méret */
+    .navbar-text {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 1010px) {  /* Eltűnés 819px alatt */
+    .navbar-text {
+      display: none;
+    }
+  }
+  

@@ -7,7 +7,6 @@
 
     <!-- Navigáció és kitöltési csík -->
     <div class="navigation-container bg-light fixed-bottom p-3">
-      <!-- Balra gomb (csak akkor jelenik meg, ha nem az első oldalon vagyunk) -->
       <button
         v-if="activePage !== 1"
         @click="navigate(activePage - 1)"
@@ -28,7 +27,7 @@
         @click="navigate(activePage + 1)"
         class="nav-button btn btn-primary"
       >
-        <i class="bi bi-arrow-right"></i> <!-- Jobbra nyíl ikon -->
+        <i class="bi bi-arrow-right"></i>
       </button>
       <button
         v-else
