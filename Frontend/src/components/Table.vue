@@ -50,7 +50,14 @@
                             <td>2025-03-01 18:00</td>
                             <td>Helyszín 1</td>
                             <td>Konferencia</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=1">Szerkesztés</a></td>
+                            <td>
+                            <a href="/event">
+                                <button id="settingsButton">
+                                    <i class="fas fa-cog"></i>
+                                </button>
+                            </a>
+                            </td>
+
                         </tr>
                         <tr>
                             <td>Rendezvény 2</td>
@@ -58,7 +65,14 @@
                             <td>2025-03-02 17:00</td>
                             <td>Helyszín 2</td>
                             <td>Workshop</td>
-                            <td><a class="btn btn-sm btn-primary" href="event.html?id=2">Szerkesztés</a></td>
+                            <td>
+                            <a href="/event">
+                                <button id="settingsButton">
+                                    <i class="fas fa-cog"></i>
+                                </button>
+                            </a>
+                            </td>
+
                         </tr>
                 </table>
             </div>

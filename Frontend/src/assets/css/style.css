@@ -433,3 +433,25 @@ body.dark-mode nav {
     }
   }
   
+
+
+  #settingsButton {
+    background-color: #ffffff;
+    padding: 12px;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#settingsButton:hover {
+    background-color: #f0f0f0;
+}
+#settingsButton i {
+    font-size: 20px;
+    color: #333;
+}
